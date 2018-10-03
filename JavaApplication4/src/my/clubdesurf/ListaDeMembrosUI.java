@@ -14,11 +14,26 @@ import java.io.FileNotFoundException;
  */
 public class ListaDeMembrosUI extends javax.swing.JFrame {
     
-    private static Clube club;
+    public static Clube club;
     /**
      * Creates new form ListaDeMembros
      */
     public ListaDeMembrosUI() {
+        try {            
+                    club = Clube.leObj("clubedesurf.txt"); 
+                } 
+                catch (IOException e) {
+                    club = new Clube();
+                    System.out.println("Não foi possível ler os dados!\nErro de leitura.");
+                }
+                catch (ClassNotFoundException e) { 
+                    club = new Clube();
+                    System.out.println("Não foi possível ler os dados!\nFicheiro com formato desconhecido.");
+                }
+                catch(ClassCastException e) {
+                    club = new Clube();
+                    System.out.println("Não foi possível ler os dados!\nFicheiro com formato errado.");
+                }
         initComponents();
     }
 
@@ -120,7 +135,7 @@ public class ListaDeMembrosUI extends javax.swing.JFrame {
     private void Ver_Socios_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_Socios_ActionPerformed
         // TODO add your handling code here:
         
-        javax.swing.JOptionPane.showMessageDialog(this, "luisinho\nBraga Mann\nJhonny fucking boyy\nTiago bota\nDaniel Pivias\nTomas Cholo\nCatia Tetas\nMaria Chupadora de Gaita", "Lista de Sócios", -1);
+        javax.swing.JOptionPane.showMessageDialog(this, club.toString(), "Lista de sócios", -1);
        
     }//GEN-LAST:event_Ver_Socios_ActionPerformed
 
@@ -136,19 +151,26 @@ public class ListaDeMembrosUI extends javax.swing.JFrame {
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
         
-        Menu_SocioUI menu_socio = new Menu_SocioUI(); // falta confirmar se utilizador é valido
-        menu_socio.setVisible(true);
+        if (club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
+            Menu_SocioUI menu_socio = new Menu_SocioUI(club.getAluno(Integer.parseInt(this.pesquisar_text.getText())));
+            menu_socio.setVisible(true);
+        }
         
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void remove_socioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_socioActionPerformed
         // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(this, "Acabou de eliminar o associado $NUMERO$.", "Message", -1);
+        if(club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
+            club.removerAluno(Integer.parseInt(this.pesquisar_text.getText()));
+            javax.swing.JOptionPane.showMessageDialog(this, "Acabou de eliminar o associado "
+                    + Integer.parseInt(this.pesquisar_text.getText()), "Message", -1);
+        }
+        else javax.swing.JOptionPane.showMessageDialog(this, "Sócio não existe!!", "Message", 0);
     }//GEN-LAST:event_remove_socioActionPerformed
 
     private void add_socioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_socioActionPerformed
         // TODO add your handling code here:
-        PaginaDeDadosUI addsocio = new  PaginaDeDadosUI(this.club);
+        PaginaDeDadosUI addsocio = new  PaginaDeDadosUI();
         addsocio.setVisible(true);
     }//GEN-LAST:event_add_socioActionPerformed
 
@@ -192,23 +214,10 @@ public class ListaDeMembrosUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        club = new Clube();
-        try {            
-            club = Clube.leObj("clubedesurf.txt"); 
-        } 
-        catch (IOException e) {   
-            System.out.println("Não foi possível ler os dados!\nErro de leitura.");
-        }
-        catch (ClassNotFoundException e) { 
-            System.out.println("Não foi possível ler os dados!\nFicheiro com formato desconhecido.");
-        }
-        catch(ClassCastException e) {  
-            System.out.println("Não foi possível ler os dados!\nFicheiro com formato errado.");
-        }
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() {                
                 new ListaDeMembrosUI().setVisible(true);
             }
         });

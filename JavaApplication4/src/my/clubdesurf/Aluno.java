@@ -121,12 +121,20 @@ public class Aluno implements Serializable
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Número: " + this.numero);
-        sb.append("; Nome: " + this.nome);
-        sb.append("; Curso: " + this.curso);
-        sb.append("; Ano: " + this.ano);
-        sb.append("; Morada: " + this.morada);
-        sb.append("; Email: " + this.email);
+        sb.append("\nNome: " + this.nome);
+        sb.append("\nCurso: " + this.curso);
+        sb.append("\nAno: " + this.ano);
+        sb.append("\nMorada: " + this.morada);
+        sb.append("\nEmail: " + this.email);
         
+        return sb.toString();
+    }
+    
+    public String verCotas(){
+        StringBuilder sb = new StringBuilder();
+        for(Quota q : this.quotas){
+            sb.append(q.toString() + "\n");
+        }
         return sb.toString();
     }
     

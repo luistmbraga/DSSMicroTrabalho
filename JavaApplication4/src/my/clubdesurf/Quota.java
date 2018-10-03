@@ -5,7 +5,7 @@
  */
 package my.clubdesurf;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.io.Serializable; 
 
 /**
@@ -16,11 +16,11 @@ import java.io.Serializable;
  */
 public class Quota implements Serializable
 {
-    private LocalDateTime data;
+    private LocalDate data;
     private double valor;
     
     public Quota(){
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
         this.valor = 0;
     }
     
@@ -29,12 +29,12 @@ public class Quota implements Serializable
         this.valor = q.getValor();
     }
     
-    public Quota(LocalDateTime data, double valor){
+    public Quota(LocalDate data, double valor){
         this.data = data;
         this.valor = valor;
     }
     
-    public LocalDateTime getData(){
+    public LocalDate getData(){
         return this.data;
     }
     

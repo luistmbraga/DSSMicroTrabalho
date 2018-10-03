@@ -10,11 +10,17 @@ package my.clubdesurf;
  * @author luis
  */
 public class AtualizarDadosSocioUI extends javax.swing.JFrame {
+    private static Aluno alt;
 
     /**
      * Creates new form AtualizarDadosSocio
      */
     public AtualizarDadosSocioUI() {
+        initComponents();
+    }
+    
+    public AtualizarDadosSocioUI(Aluno a) {
+        alt = a;
         initComponents();
     }
 
@@ -30,16 +36,16 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        guardar_button = new javax.swing.JButton();
         cancelar_button = new javax.swing.JButton();
-        updAno_text = new javax.swing.JTextField();
         updCurso_text = new javax.swing.JTextField();
         updEmail_text = new javax.swing.JTextField();
         updMorada_text = new javax.swing.JTextField();
+        mudar_curso = new javax.swing.JButton();
+        mudar_email = new javax.swing.JButton();
+        mudar_morada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,30 +60,17 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 760, 120);
 
-        jLabel3.setText("Ano:");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(40, 170, 37, 23);
-
         jLabel4.setText("Curso:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(30, 240, 52, 23);
+        jLabel4.setBounds(30, 200, 52, 23);
 
         jLabel5.setText("Email:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(30, 310, 57, 23);
+        jLabel5.setBounds(30, 290, 57, 23);
 
         jLabel6.setText("Morada:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(10, 380, 67, 23);
-
-        guardar_button.setText("Guardar");
-        guardar_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardar_buttonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(guardar_button);
-        guardar_button.setBounds(210, 470, 110, 37);
 
         cancelar_button.setText("Cancelar");
         cancelar_button.addActionListener(new java.awt.event.ActionListener() {
@@ -86,15 +79,40 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cancelar_button);
-        cancelar_button.setBounds(460, 470, 130, 37);
-        jPanel1.add(updAno_text);
-        updAno_text.setBounds(80, 160, 120, 33);
+        cancelar_button.setBounds(320, 470, 130, 37);
         jPanel1.add(updCurso_text);
-        updCurso_text.setBounds(80, 230, 320, 33);
+        updCurso_text.setBounds(80, 190, 390, 33);
         jPanel1.add(updEmail_text);
-        updEmail_text.setBounds(80, 300, 320, 33);
+        updEmail_text.setBounds(80, 280, 390, 33);
         jPanel1.add(updMorada_text);
-        updMorada_text.setBounds(80, 370, 460, 33);
+        updMorada_text.setBounds(80, 370, 390, 33);
+
+        mudar_curso.setText("Mudar");
+        mudar_curso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mudar_cursoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mudar_curso);
+        mudar_curso.setBounds(470, 190, 65, 37);
+
+        mudar_email.setText("Mudar");
+        mudar_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mudar_emailActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mudar_email);
+        mudar_email.setBounds(470, 280, 65, 37);
+
+        mudar_morada.setText("Mudar");
+        mudar_morada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mudar_moradaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mudar_morada);
+        mudar_morada.setBounds(470, 370, 65, 37);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,14 +128,39 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_buttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guardar_buttonActionPerformed
-
     private void cancelar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar_buttonActionPerformed
             // TODO add your handling code here:
             this.dispose();
     }//GEN-LAST:event_cancelar_buttonActionPerformed
+
+    private void mudar_moradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudar_moradaActionPerformed
+        if(!this.updMorada_text.getText().equals("")){
+            alt.setMorada(this.updMorada_text.getText());
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);
+        }
+    }//GEN-LAST:event_mudar_moradaActionPerformed
+
+    private void mudar_cursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudar_cursoActionPerformed
+        // TODO add your handling code here:
+        if(!this.updCurso_text.getText().equals("")){
+            alt.setCurso(this.updCurso_text.getText());
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);
+        }
+    }//GEN-LAST:event_mudar_cursoActionPerformed
+
+    private void mudar_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudar_emailActionPerformed
+        // TODO add your handling code here:
+        if(!this.updEmail_text.getText().equals("")){
+            alt.setEmail(this.updEmail_text.getText());
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);
+        }
+    }//GEN-LAST:event_mudar_emailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,15 +200,15 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar_button;
-    private javax.swing.JButton guardar_button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField updAno_text;
+    private javax.swing.JButton mudar_curso;
+    private javax.swing.JButton mudar_email;
+    private javax.swing.JButton mudar_morada;
     private javax.swing.JTextField updCurso_text;
     private javax.swing.JTextField updEmail_text;
     private javax.swing.JTextField updMorada_text;

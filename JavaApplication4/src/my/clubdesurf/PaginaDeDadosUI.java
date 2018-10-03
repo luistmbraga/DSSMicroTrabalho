@@ -11,6 +11,10 @@ package my.clubdesurf;
  */
 public class PaginaDeDadosUI extends javax.swing.JFrame {
 
+    public PaginaDeDadosUI() {
+        initComponents();
+    }
+        
     /**
      * Creates new form PaginaDeDados
      */
@@ -18,7 +22,7 @@ public class PaginaDeDadosUI extends javax.swing.JFrame {
         initComponents();
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,9 +139,9 @@ public class PaginaDeDadosUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean dadosValidos() {
-        boolean valido = this.nome_text.getText().equals("") || this.num_text.getText().equals("") 
+        boolean valido = (this.nome_text.getText().equals("") || this.num_text.getText().equals("") 
                          || this.ano_text.getText().equals("") || this.curso_text.getText().equals("")
-                         || this.morada_text.getText().equals("") || this.email_text.getText().equals("");
+                         || this.morada_text.getText().equals("") || this.email_text.getText().equals(""));
         
         if (valido)
             javax.swing.JOptionPane.showMessageDialog(this, "Todos os campos são de preenchimento obrigatório!!", "Message", 0);
@@ -148,8 +152,16 @@ public class PaginaDeDadosUI extends javax.swing.JFrame {
     private void CriarConta_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarConta_ActionPerformed
         // TODO add your handling code here:
         if (this.dadosValidos()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Conta criada com sucesso.", "Message", -1);
-            this.setDefaultCloseOperation(3);
+            System.out.println(ListaDeMembrosUI.club);
+            if (!ListaDeMembrosUI.club.existe(Integer.parseInt(this.num_text.getText()))){
+                System.out.println("PIÇA2");
+                Aluno a = new Aluno (Integer.parseInt(this.num_text.getText()), this.nome_text.getText(),
+                                 this.curso_text.getText(), Integer.parseInt(this.ano_text.getText()), 
+                                 this.morada_text.getText(),this.email_text.getText());
+                ListaDeMembrosUI.club.addAluno(a);
+                javax.swing.JOptionPane.showMessageDialog(this, "Conta criada com sucesso.", "Message", -1);
+                }
+            else {javax.swing.JOptionPane.showMessageDialog(this, "Utilizador existente.", "Message", 0);}
             this.dispose();
         } 
     }//GEN-LAST:event_CriarConta_ActionPerformed

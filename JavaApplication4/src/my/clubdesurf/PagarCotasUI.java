@@ -5,16 +5,23 @@
  */
 package my.clubdesurf;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author luis
  */
 public class PagarCotasUI extends javax.swing.JFrame {
-
+    private static Aluno alpag;
     /**
      * Creates new form PagarCotas
      */
     public PagarCotasUI() {
+        initComponents();
+    }
+    
+    public PagarCotasUI(Aluno a) {
+        alpag = a;
         initComponents();
     }
 
@@ -33,13 +40,13 @@ public class PagarCotasUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        dia_text = new javax.swing.JTextField();
-        mes_text = new javax.swing.JTextField();
-        ano_text = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         valor_text = new javax.swing.JTextField();
         pagar_button = new javax.swing.JButton();
         cancelar_pay = new javax.swing.JButton();
+        opcoes_dia = new javax.swing.JComboBox<>();
+        opcoes_mes = new javax.swing.JComboBox<>();
+        opcoes_ano = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,17 +67,11 @@ public class PagarCotasUI extends javax.swing.JFrame {
 
         jLabel4.setText("Ano:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(400, 180, 37, 23);
+        jLabel4.setBounds(500, 180, 37, 23);
 
         jLabel5.setText("Mês:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(200, 180, 38, 23);
-        jPanel1.add(dia_text);
-        dia_text.setBounds(50, 170, 130, 33);
-        jPanel1.add(mes_text);
-        mes_text.setBounds(240, 170, 150, 33);
-        jPanel1.add(ano_text);
-        ano_text.setBounds(440, 170, 150, 33);
+        jLabel5.setBounds(260, 180, 38, 23);
 
         jLabel6.setText("Valor:");
         jPanel1.add(jLabel6);
@@ -96,6 +97,23 @@ public class PagarCotasUI extends javax.swing.JFrame {
         jPanel1.add(cancelar_pay);
         cancelar_pay.setBounds(440, 470, 120, 37);
 
+        opcoes_dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31" }));
+        opcoes_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcoes_diaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(opcoes_dia);
+        opcoes_dia.setBounds(50, 170, 150, 33);
+
+        opcoes_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04","05","06","07","08","09","10","11","12" }));
+        jPanel1.add(opcoes_mes);
+        opcoes_mes.setBounds(300, 170, 140, 33);
+
+        opcoes_ano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2009", "2010", "2011", "2012","2013","2014","2015","2016","2017","2018","2019","2020" }));
+        jPanel1.add(opcoes_ano);
+        opcoes_ano.setBounds(540, 170, 140, 33);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,7 +135,18 @@ public class PagarCotasUI extends javax.swing.JFrame {
 
     private void pagar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagar_buttonActionPerformed
         // TODO add your handling code here:
+        if(!this.valor_text.getText().equals("")){
+            String s = (String) this.opcoes_ano.getSelectedItem() + "-" 
+                       + (String) this.opcoes_mes.getSelectedItem() + "-" 
+                       + (String) this.opcoes_dia.getSelectedItem();
+            Quota q = new Quota(LocalDate.parse(s), Integer.parseInt(this.valor_text.getText()));
+            alpag.addQuota(q);
+        }
     }//GEN-LAST:event_pagar_buttonActionPerformed
+
+    private void opcoes_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcoes_diaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opcoes_diaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,9 +185,7 @@ public class PagarCotasUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ano_text;
     private javax.swing.JButton cancelar_pay;
-    private javax.swing.JTextField dia_text;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -166,7 +193,9 @@ public class PagarCotasUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField mes_text;
+    private javax.swing.JComboBox<String> opcoes_ano;
+    private javax.swing.JComboBox<String> opcoes_dia;
+    private javax.swing.JComboBox<String> opcoes_mes;
     private javax.swing.JButton pagar_button;
     private javax.swing.JTextField valor_text;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ package my.clubdesurf;
  * @author luis
  */
 public class Menu_SocioUI extends javax.swing.JFrame {
+    private static Aluno alun;
 
     /**
      * Creates new form Menu_Socio
@@ -18,7 +19,10 @@ public class Menu_SocioUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    
+    public Menu_SocioUI(Aluno a) {
+        alun = a;
+        initComponents();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,12 +116,12 @@ public class Menu_SocioUI extends javax.swing.JFrame {
 
     private void ver_dadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_dadosActionPerformed
         // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(this, "Dados do User...etc", "Dados", -1);
+        javax.swing.JOptionPane.showMessageDialog(this, alun.toString(), "Dados", -1);
     }//GEN-LAST:event_ver_dadosActionPerformed
 
     private void ver_cotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_cotasActionPerformed
         // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(this, "Cotas de utilizador...etc", "Dados", -1);
+        javax.swing.JOptionPane.showMessageDialog(this, alun.verCotas(), "Dados", -1);
     }//GEN-LAST:event_ver_cotasActionPerformed
 
     private void sair_associadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_associadoActionPerformed
@@ -128,13 +132,13 @@ public class Menu_SocioUI extends javax.swing.JFrame {
 
     private void atualizar_dadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizar_dadosActionPerformed
         // TODO add your handling code here:
-        AtualizarDadosSocioUI atualizar = new AtualizarDadosSocioUI();
+        AtualizarDadosSocioUI atualizar = new AtualizarDadosSocioUI(alun);
         atualizar.setVisible(true);
     }//GEN-LAST:event_atualizar_dadosActionPerformed
 
     private void pagar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagar_buttonActionPerformed
         // TODO add your handling code here:
-        PagarCotasUI pagar = new PagarCotasUI();
+        PagarCotasUI pagar = new PagarCotasUI(alun);
         pagar.setVisible(true); 
     }//GEN-LAST:event_pagar_buttonActionPerformed
 

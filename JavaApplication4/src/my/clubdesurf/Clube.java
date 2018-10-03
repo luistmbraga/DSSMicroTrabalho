@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors; 
 import static java.util.stream.Collectors.toMap;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -29,7 +29,7 @@ public class Clube implements Serializable
     private Map<Integer,Aluno> alunos;
     
     public Clube(){
-        this.alunos = new HashMap<>();
+        this.alunos = new HashMap<Integer, Aluno>();
     }
     
     public Aluno getAluno(Integer num){
@@ -40,7 +40,7 @@ public class Clube implements Serializable
         return this.alunos.entrySet().stream().collect(toMap(e->e.getKey(), e->e.getValue().clone()));
     }
     
-    public void pagarQuota(Integer num, Double valor, LocalDateTime data){
+    public void pagarQuota(Integer num, Double valor, LocalDate data){
         Quota q = new Quota(data,valor);
         
         this.alunos.get(num).addQuota(q);
@@ -66,12 +66,18 @@ public class Clube implements Serializable
         this.alunos.put(a.getNumero(),a);
     }
     
+    public void removerAluno(int num){
+        this.alunos.remove(num);
+    }
     
+    public boolean existe(int num){
+        return this.alunos.containsKey(num);
+    }
     
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for(Aluno a : this.alunos.values()){
-            sb.append(a.toString());
+            sb.append(a.getNumero() + "       " + a.getNome() + "\n");
         }
         
         return sb.toString();
