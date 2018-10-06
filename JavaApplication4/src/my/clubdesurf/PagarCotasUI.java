@@ -98,11 +98,6 @@ public class PagarCotasUI extends javax.swing.JFrame {
         cancelar_pay.setBounds(440, 470, 120, 37);
 
         opcoes_dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31" }));
-        opcoes_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcoes_diaActionPerformed(evt);
-            }
-        });
         jPanel1.add(opcoes_dia);
         opcoes_dia.setBounds(50, 170, 150, 33);
 
@@ -141,12 +136,10 @@ public class PagarCotasUI extends javax.swing.JFrame {
                        + (String) this.opcoes_dia.getSelectedItem();
             Quota q = new Quota(LocalDate.parse(s), Integer.parseInt(this.valor_text.getText()));
             alpag.addQuota(q);
+            javax.swing.JOptionPane.showMessageDialog(this, "Cota paga com sucesso", "Message", -1);
         }
+        else javax.swing.JOptionPane.showMessageDialog(this, "Insira um valor.", "Message", 0);
     }//GEN-LAST:event_pagar_buttonActionPerformed
-
-    private void opcoes_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcoes_diaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opcoes_diaActionPerformed
 
     /**
      * @param args the command line arguments

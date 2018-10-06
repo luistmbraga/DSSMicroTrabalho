@@ -6,7 +6,6 @@
 package my.clubdesurf;
 
 import java.io.IOException;
-import java.io.FileNotFoundException;
 
 /**
  *
@@ -138,29 +137,23 @@ public class ListaDeMembrosUI extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, club.toString(), "Lista de sócios", -1);
        
     }//GEN-LAST:event_Ver_Socios_ActionPerformed
-
-    private boolean validaDadosSocio() {                //nao é equals mas sim um contains
-        boolean valido = this.pesquisar_text.getText().equals("DSSMicroTrabalho");
-        
-        if (!valido)
-            javax.swing.JOptionPane.showMessageDialog(this, "Sócio não existe!!", "Message", 0);
-        
-        return valido;
-    }   
     
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
         
-        if (club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
+        if (!this.pesquisar_text.getText().equals("") && 
+                club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
             Menu_SocioUI menu_socio = new Menu_SocioUI(club.getAluno(Integer.parseInt(this.pesquisar_text.getText())));
             menu_socio.setVisible(true);
         }
+        else javax.swing.JOptionPane.showMessageDialog(this, "Sócio não existe!!", "Message", 0);
         
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void remove_socioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_socioActionPerformed
         // TODO add your handling code here:
-        if(club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
+        if(!this.pesquisar_text.getText().equals("") && 
+                club.existe(Integer.parseInt(this.pesquisar_text.getText()))){
             club.removerAluno(Integer.parseInt(this.pesquisar_text.getText()));
             javax.swing.JOptionPane.showMessageDialog(this, "Acabou de eliminar o associado "
                     + Integer.parseInt(this.pesquisar_text.getText()), "Message", -1);

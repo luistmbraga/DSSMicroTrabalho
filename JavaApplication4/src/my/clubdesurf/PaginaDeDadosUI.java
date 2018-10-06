@@ -152,16 +152,15 @@ public class PaginaDeDadosUI extends javax.swing.JFrame {
     private void CriarConta_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarConta_ActionPerformed
         // TODO add your handling code here:
         if (this.dadosValidos()) {
-            System.out.println(ListaDeMembrosUI.club);
+            
             if (!ListaDeMembrosUI.club.existe(Integer.parseInt(this.num_text.getText()))){
-                System.out.println("PIÇA2");
                 Aluno a = new Aluno (Integer.parseInt(this.num_text.getText()), this.nome_text.getText(),
                                  this.curso_text.getText(), Integer.parseInt(this.ano_text.getText()), 
                                  this.morada_text.getText(),this.email_text.getText());
                 ListaDeMembrosUI.club.addAluno(a);
                 javax.swing.JOptionPane.showMessageDialog(this, "Conta criada com sucesso.", "Message", -1);
                 }
-            else {javax.swing.JOptionPane.showMessageDialog(this, "Utilizador existente.", "Message", 0);}
+            else {javax.swing.JOptionPane.showMessageDialog(this, "Utilizador já existe.", "Message", 0);}
             this.dispose();
         } 
     }//GEN-LAST:event_CriarConta_ActionPerformed

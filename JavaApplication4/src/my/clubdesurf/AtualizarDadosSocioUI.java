@@ -94,7 +94,7 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(mudar_curso);
-        mudar_curso.setBounds(470, 190, 65, 37);
+        mudar_curso.setBounds(470, 190, 90, 37);
 
         mudar_email.setText("Mudar");
         mudar_email.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(mudar_email);
-        mudar_email.setBounds(470, 280, 65, 37);
+        mudar_email.setBounds(470, 280, 90, 37);
 
         mudar_morada.setText("Mudar");
         mudar_morada.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +112,7 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(mudar_morada);
-        mudar_morada.setBounds(470, 370, 65, 37);
+        mudar_morada.setBounds(470, 370, 90, 37);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,9 +133,14 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
             this.dispose();
     }//GEN-LAST:event_cancelar_buttonActionPerformed
 
+    private void dadosMudadosSuc(){
+        javax.swing.JOptionPane.showMessageDialog(this, "Dados Mudados com Sucesso", "Message", -1);
+    }
+    
     private void mudar_moradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mudar_moradaActionPerformed
         if(!this.updMorada_text.getText().equals("")){
             alt.setMorada(this.updMorada_text.getText());
+            dadosMudadosSuc();
         }
         else {
             javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);
@@ -146,6 +151,7 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!this.updCurso_text.getText().equals("")){
             alt.setCurso(this.updCurso_text.getText());
+            dadosMudadosSuc();
         }
         else {
             javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);
@@ -156,6 +162,7 @@ public class AtualizarDadosSocioUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!this.updEmail_text.getText().equals("")){
             alt.setEmail(this.updEmail_text.getText());
+            dadosMudadosSuc();
         }
         else {
             javax.swing.JOptionPane.showMessageDialog(this, "Campo vazio!!", "Message", 0);

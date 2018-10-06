@@ -19,7 +19,7 @@ public class ClubDeSurfUI extends javax.swing.JFrame {
     }
 
     private boolean validaDados() {
-        boolean valido = this.password.getText().equals("luis");
+        boolean valido = this.password.getText().equals("DSS");
         
         if (!valido)
             javax.swing.JOptionPane.showMessageDialog(this, "Dados incorretos!!", "Message", 0);
